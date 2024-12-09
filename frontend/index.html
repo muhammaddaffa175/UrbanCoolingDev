@@ -1,68 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Urban Cooling</title>
-    
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,700;1,700&display=swap"
-          rel="stylesheet"
-        />
-        <!-- Feather Icons -->
-        <script src="https://unpkg.com/feather-icons"></script>
-    
-        <!-- My Styles -->
-        <link rel="stylesheet" href="./assets/css/styles.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Urban Cooling</title>
 
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,700;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <!-- My Styles -->
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+
+  </head>
+  <body>
     <!-- Header & Navbar Start -->
     <header>
-        <nav class="navbar">
-            <!-- Logo dan Nama Platform -->
-            <a href="index.html" class="navbar-logo">Urban <span>Cooling</span></a>
+      <nav class="navbar">
+        <!-- Logo dan Nama Platform -->
+        <a href="index.html" class="navbar-logo">Urban <span>Cooling</span></a>
 
-            <!-- Navigasi Utama -->
-            <div class="navbar-nav">
-                <a href="home.html">Home</a>
-                <a href="solutions.html">Solutions</a>
-                <a href="providers.html">Providers</a>
-                <a href="about.html">About</a>
-            </div>
+        <!-- Navigasi Utama -->
+        <div class="navbar-nav">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#weather">Weather</a>
+          <a href="#menu">Menu</a>
+          <a href="#contact">Contact</a>
+        </div>
 
-            <!-- Fitur Tambahan di Navbar -->
-            <div class="navbar-extra">
-                <!-- Kolom Pencarian -->
-                <div class="search-container" id="searchContainer" style="display: none;">
-                    <input type="text" id="searchInput" placeholder="Search..." />
-                    <button id="searchButton">Search</button>
-                </div>
-                <a href="#" id="search"><i data-feather="search"></i></a>
+        <!-- Fitur Tambahan di Navbar -->
+        <div class="navbar-extra">
+          <!-- Kolom Pencarian -->
+          <div class="search-container" id="searchContainer" style="display: none;">
+            <input type="text" id="searchInput" placeholder="Search..." />
+            <button id="searchButton">Search</button>
+          </div>
+          <a href="#" id="search"><i data-feather="search"></i></a>
 
-                <!-- Login dan Profil Pengguna -->
-                <a href="../login/index.html" id="log-in" class="login-button">Login</a>
-                <a href="profile.html" id="usernameDisplay" style="display: none;">Username</a>
+          <!-- Login dan Profil Pengguna -->
+          <a href="../frontend/login/index.html" id="log-in" class="login-button">Login</a>
+          <a href="profile.html" id="usernameDisplay" style="display: none;">Username</a>
 
-                <!-- Menu Toggle untuk tampilan mobile -->
-                <a href="#" id="menu"><i data-feather="menu"></i></a>
-            </div>
-        </nav>
-            <!-- Hero Section Start -->
-        <section class="hero" id="home">
-            <main class="content">
-                <h1>Masa Depan Kota Lebih<span> Sejuk</span></h1>
-                <p>Temukan solusi cerdas untuk mengurangi panas kota dengan UrbanCooling</p>
-                <a href="#solutions" class="cta">Eksplor Solusinya Sekarang!</a>
-            </main>
-        </section>
-              
+          <!-- Menu Toggle untuk tampilan mobile -->
+          <a href="#" id="menu"><i data-feather="menu"></i></a>
+        </div>
+      </nav>
+
+      <!-- Hero Section Start -->
+      <section class="hero" id="home">
+        <main class="content">
+          <h1>Masa Depan Kota Lebih<span> Sejuk</span></h1>
+          <p>Temukan solusi cerdas untuk mengurangi panas kota dengan UrbanCooling</p>
+          <a href="#solutions" class="cta">Eksplor Solusinya Sekarang!</a>
+        </main>
+      </section>
       <!-- Hero Section End -->
-  
+
       <!-- About Section Start -->
       <section id="about" class="about">
-        <h2><span>About</span> UrbanCooling</h2>
+        <h2><span>About</span> Us</h2>
         <div class="row">
           <div class="about-img">
             <img src="../frontend/assets/images/logo.svg" alt="Tentang Kami" />
@@ -79,90 +82,94 @@
           </div>
         </div>
       </section>
-      
-      <!-- About section End -->
-  
-<!-- Recommendations Section Start -->
-<section id="recommendations" class="recommendations">
-    <h2><span>Menu</span> Rekomendasi</h2>
-    <p>
-      Berikut adalah solusi UrbanCooling yang dapat Anda implementasikan untuk menciptakan lingkungan perkotaan yang lebih sejuk dan nyaman.
-    </p>
-  
-    <div class="row">
-      <!-- Green Cooling -->
-      <div class="recommendation-card">
-        <img src="img/recommendations/green-cooling.svg" alt="Green Cooling" class="recommendation-card-img" />
-        <h3 class="recommendation-card-title">Green Cooling</h3>
-        <p class="recommendation-card-desc">
-          Tingkatkan area hijau dengan menanam pohon atau menggunakan tanaman rambat untuk menciptakan keteduhan alami.
+      <!-- About Section End -->
+
+      <!-- Weather Section Start -->
+      <section id="weather" class="weather">
+        <h2><span>Weather</span> Forecast</h2>
+        <div class="row">
+          <p>Get the latest weather updates and how it impacts urban cooling strategies.</p>
+          <!-- Weather content goes here -->
+        </div>
+      </section>
+      <!-- Weather Section End -->
+
+      <!-- Menu Recommendations Section Start -->
+      <section id="menu" class="recommendations">
+        <h2><span>Menu</span> Rekomendasi</h2>
+        <p>
+          Berikut adalah solusi UrbanCooling yang dapat Anda implementasikan untuk menciptakan lingkungan perkotaan yang lebih sejuk dan nyaman.
         </p>
-        <a href="green-cooling.html" class="cta">Pelajari Lebih Lanjut</a>
-      </div>
-  
-      <!-- Reflective Materials -->
-      <div class="recommendation-card">
-        <img src="img/recommendations/reflective-material.svg" alt="Reflective Materials" class="recommendation-card-img" />
-        <h3 class="recommendation-card-title">Material Reflektif</h3>
-        <p class="recommendation-card-desc">
-          Gunakan material reflektif seperti cat atap putih atau aspal dingin untuk mengurangi penyerapan panas.
-        </p>
-        <a href="reflective-materials.html" class="cta">Pelajari Lebih Lanjut</a>
-      </div>
-  
-      <!-- Water-Based Cooling -->
-      <div class="recommendation-card">
-        <img src="img/recommendations/water-cooling.svg" alt="Water-Based Cooling" class="recommendation-card-img" />
-        <h3 class="recommendation-card-title">Pendingin Berbasis Air</h3>
-        <p class="recommendation-card-desc">
-          Solusi utama kami! Gunakan air mancur, kolam reflektif, atau sistem pendinginan evaporatif untuk menurunkan suhu sekitar.
-        </p>
-        <a href="water-cooling.html" class="cta">Pelajari Lebih Lanjut</a>
-      </div>
-    </div>
-  </section>
-  <!-- Recommendations Section End -->
-  
-  
+
+        <div class="row">
+          <!-- Green Cooling -->
+          <div class="recommendation-card">
+            <img src="../frontend/assets/images/green.jpg" alt="Green Cooling" class="recommendation-card-img" />
+            <h3 class="recommendation-card-title">Green Cooling</h3>
+            <p class="recommendation-card-desc">
+              Tingkatkan area hijau dengan menanam pohon atau menggunakan tanaman rambat untuk menciptakan keteduhan alami.
+            </p>
+            <a href="green-cooling.html" class="cta">Pelajari Lebih Lanjut</a>
+          </div>
+
+          <!-- Reflective Materials -->
+          <div class="recommendation-card">
+            <img src="img/recommendations/reflective-material.svg" alt="Reflective Materials" class="recommendation-card-img" />
+            <h3 class="recommendation-card-title">Material Reflektif</h3>
+            <p class="recommendation-card-desc">
+              Gunakan material reflektif seperti cat atap putih atau aspal dingin untuk mengurangi penyerapan panas.
+            </p>
+            <a href="reflective-materials.html" class="cta">Pelajari Lebih Lanjut</a>
+          </div>
+
+          <!-- Water-Based Cooling -->
+          <div class="recommendation-card">
+            <img src="img/recommendations/water-cooling.svg" alt="Water-Based Cooling" class="recommendation-card-img" />
+            <h3 class="recommendation-card-title">Pendingin Berbasis Air</h3>
+            <p class="recommendation-card-desc">
+              Solusi utama kami! Gunakan air mancur, kolam reflektif, atau sistem pendinginan evaporatif untuk menurunkan suhu sekitar.
+            </p>
+            <a href="water-cooling.html" class="cta">Pelajari Lebih Lanjut</a>
+          </div>
+        </div>
+      </section>
+      <!-- Menu Recommendations Section End -->
+
       <!-- Contact Section Start -->
-  
       <section id="contact" class="contact">
         <h2><span>Kontak</span> kami</h2>
         <p>Berikut kontak Urban<span>Cooling</span>. Sokin!</p>
-  
-        <div class="row">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126748.56211042157!2d107.64315755!3d-6.90344945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e6398252477f%3A0x146a1f93d3e815b2!2sBandung%2C%20Kota%20Bandung%2C%20Jawa%20Barat!5e0!3m2!1sid!2sid!4v1729766918696!5m2!1sid!2sid"allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="map"></iframe>
-        
-      <form action="">
-          <div class="input-group">
-              <i data-feather="user"></i>
-              <input type="text" placeholder="Nama">
-          </div>
-          <div class="input-group">
-              <i data-feather="mail"></i>
-              <input type="email" placeholder="E-mail">
-          </div>
-          <div class="input-group">
-              <i data-feather="smartphone"></i>
-              <input type="text" placeholder="Message">
-          </div>
-  
-          <button type="submit" class="button"> Kirim Pesan</button>
-      </form>
-      
-      </div>
-      </section>
-  
-      <!-- COntact Section Start -->
-    <!-- Feather Icons -->
-    <script>
-    feather.replace();
-    </script>
 
+        <div class="row">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126748.56211042157!2d107.64315755!3d-6.90344945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e6398252477f%3A0x146a1f93d3e815b2!2sBandung%2C%20Kota%20Bandung%2C%20Jawa%20Barat!5e0!3m2!1sid!2sid!4v1729766918696!5m2!1sid!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="map"></iframe>
+
+          <form action="">
+            <div class="input-group">
+              <i data-feather="user"></i>
+              <input type="text" placeholder="Nama" />
+            </div>
+            <div class="input-group">
+              <i data-feather="mail"></i>
+              <input type="email" placeholder="E-mail" />
+            </div>
+            <div class="input-group">
+              <i data-feather="smartphone"></i>
+              <input type="text" placeholder="Message" />
+            </div>
+
+            <button type="submit" class="button"> Kirim Pesan</button>
+          </form>
+        </div>
+      </section>
+      <!-- Contact Section End -->
+
+      <!-- Feather Icons -->
+      <script>
+        feather.replace();
+      </script>
     </header>
     <!-- Header & Navbar End -->
-    </head>
-    
+
     <!-- My Javascript -->
     <script src="./assets/js/scripts.js"></script>
   </body>
