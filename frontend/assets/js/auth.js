@@ -6,13 +6,10 @@ import {
     onAuthStateChanged, 
     updateProfile 
 } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
-
-import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
-import { saveUserData } from './database.js';
+import { saveUserData,} from './firestore.js'; // Import firestore.js functions
 import app from './app.js';
 
 const auth = getAuth(app);
-const db = getDatabase(app);
 
 // Register new user
 export function registerUser(email, password, username) {
@@ -22,9 +19,10 @@ export function registerUser(email, password, username) {
             // Update profile with username
             return updateProfile(user, {
                 displayName: username
-            }).then(() => {
-                // Save user data to Firebase Realtime Database
-                return saveUserData(user.uid, username, email);
+            })
+            .then(() => {
+                // Save user data to Firestore
+                return saveUserData(user.uid, username, email);  // Use the function from firestore.js
             });
         });
 }
@@ -49,7 +47,7 @@ document.getElementById("button_register")?.addEventListener("click", async (e) 
     try {
         await registerUser(email, password, username);
         alert("Registration successful!");
-        window.location.href = "../frontend/index.html"; // Redirect to the main page after registration
+        window.location.href = "/frontend/index.html"; // Redirect to the main page after registration
     } catch (error) {
         console.error("Error during registration:", error.message);
         alert("Registration failed: " + error.message);
@@ -64,7 +62,7 @@ document.getElementById("button_login")?.addEventListener("click", async (e) => 
     try {
         await loginUser(email, password);
         alert("Login successful!");
-        window.location.href = "../frontend/index.html"; // Redirect to the main page after login
+        window.location.href = "/frontend/index.html"; // Redirect to the main page after login
     } catch (error) {
         console.error("Error during login:", error.message);
         alert("Login failed: " + error.message);
@@ -77,15 +75,15 @@ onAuthStateChanged(auth, (user) => {
     const userDisplay = document.getElementById("usernameDisplay");
 
     if (user) {
-        console.log("User logged in:", user.uid);
-        loginButton.style.display = "none";
-        userDisplay.style.display = "block";
-        userDisplay.textContent = user.displayName || "Profile";
-        userDisplay.href = "../frontend/profile/profile.html";
+        if (loginButton) loginButton.style.display = "none";  // Pastikan elemen ada sebelum diubah
+        if (userDisplay) {
+            userDisplay.style.display = "block";
+            userDisplay.textContent = user.displayName || "Profile";
+            userDisplay.href = "../profile/profile.html";
+        }
     } else {
-        console.log("User not logged in.");
-        loginButton.style.display = "block";
-        userDisplay.style.display = "none";
+        if (loginButton) loginButton.style.display = "block";  // Pastikan elemen ada sebelum diubah
+        if (userDisplay) userDisplay.style.display = "none";
     }
 });
 
@@ -94,7 +92,7 @@ document.getElementById("logout-button")?.addEventListener("click", async () => 
     try {
         await logoutUser();
         alert("Logged out successfully!");
-        window.location.href = "index.html"; // Redirect to the main page after logout
+        window.location.href = "/frontend/index.html"; // Redirect to main page after logout
     } catch (error) {
         console.error("Error during logout:", error.message);
         alert("Logout failed: " + error.message);

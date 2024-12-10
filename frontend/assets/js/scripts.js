@@ -1,13 +1,13 @@
 // Toggle class active untuk navbar
 const navbarNav = document.querySelector(".navbar-nav");
+const hamburger = document.querySelector("#menu");
+
 // Ketika menu di klik, toggle navbar
-document.querySelector("#menu").onclick = () => {
+hamburger.onclick = () => {
   navbarNav.classList.toggle("active");
 };
 
 // Klik di luar navbar untuk menghilangkan navbar
-const hamburger = document.querySelector("#menu");
-
 document.addEventListener("click", function (e) {
   if (!hamburger.contains(e.target) && !navbarNav.contains(e.target)) {
     navbarNav.classList.remove("active");
@@ -15,28 +15,27 @@ document.addEventListener("click", function (e) {
 });
 
 // Fungsi untuk memuat halaman berdasarkan parameter page
+const pagePaths = {
+  'green-cooling': 'green-cooling/index.html',
+  'reflective-materials': 'reflective-materials/index.html',
+  'water-cooling': 'water-cooling/index.html',
+};
+
 function loadPage(page) {
-  let pagePath = '';
-  
-  // Menyesuaikan dengan halaman yang ada di UrbanCooling
-  if (page === 'green-cooling') {
-    pagePath = 'green-cooling/index.html'; // Path untuk Green Cooling
-  } else if (page === 'reflective-materials') {
-    pagePath = 'reflective-materials/index.html'; // Path untuk Reflective Materials
-  } else if (page === 'water-cooling') {
-    pagePath = 'water-cooling/index.html'; // Path untuk Water Cooling
-  } else {
-    document.querySelector("#" + page).scrollIntoView({ behavior: 'smooth' });
-    return;
-  }
-  
-  // Memuat konten dari file HTML jika halaman ditemukan
-  fetch(pagePath)
-    .then(response => response.text())
-    .then(html => {
+  let pagePath = pagePaths[page];
+
+  if (pagePath) {
+    // Memuat konten dari file HTML
+    fetch(pagePath)
+      .then(response => response.text())
+      .then(html => {
         document.querySelector("#content").innerHTML = html;
-    })
-    .catch(error => console.log("Error loading page:", error));
+      })
+      .catch(error => console.log("Error loading page:", error));
+  } else {
+    // Jika halaman tidak ditemukan, scroll ke bagian yang sesuai
+    document.querySelector("#" + page)?.scrollIntoView({ behavior: 'smooth' });
+  }
 }
 
 // Event listener untuk perubahan hash di URL
@@ -52,18 +51,22 @@ window.addEventListener("load", () => {
 });
 
 // Fungsi pencarian
+const searchButton = document.getElementById("searchButton");
+if (searchButton) {
+  searchButton.addEventListener("click", () => {
+    const searchTerm = document.getElementById("searchInput").value.trim().toLowerCase();
+    if (searchTerm) {
+      // Logika pencarian atau redirect ke hasil pencarian
+      alert("Searching for: " + searchTerm);
+    } else {
+      alert("Please enter a search term.");
+    }
+  });
+}
+
+// Toggle tampilan kolom pencarian
 document.getElementById("search").addEventListener("click", (event) => {
   event.preventDefault();
   const searchContainer = document.getElementById("searchContainer");
   searchContainer.style.display = searchContainer.style.display === "none" ? "flex" : "none";
-});
-
-// Event listener untuk tombol pencarian
-document.getElementById("searchButton").addEventListener("click", () => {
-  const searchTerm = document.getElementById("searchInput").value.trim().toLowerCase();
-  
-  if (searchTerm) {
-    // Logika pencarian atau redirect ke hasil pencarian
-    alert("Searching for: " + searchTerm);
-  }
 });
