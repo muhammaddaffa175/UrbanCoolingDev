@@ -1,6 +1,6 @@
-import { getAuth, onAuthStateChanged, updatePassword } from "https://www.gstatic.com/firebasejs/9.1.0/auth.js";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.1.0/storage.js";
-import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/9.1.0/firestore.js";
+import { getAuth, onAuthStateChanged, signOut, updatePassword, } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-storage.js";
+import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 import { updateUserData } from '../assets/js/firestore.js';  // Import updateUserData function from firestore.js
 import app from '../assets/js/app.js';  // Firebase sudah diinisialisasi di app.js
 
@@ -24,9 +24,21 @@ onAuthStateChanged(auth, async (user) => {
       console.log("User data not found in Firestore.");
     }
   } else {
-    window.location.replace("login.html");
+    window.location.replace("../login/index.html");
   }
 });
+
+const logoutButton = document.getElementById('logout-button');
+// Fungsi Logout
+logoutButton.addEventListener('click', () => {
+    signOut(auth).then(() => {
+      alert("Logged out successfully!");
+      window.location.href = '../index.html';
+    }).catch((error) => {
+      console.error("Error during logout:", error);
+      alert("Error logging out. Please try again.");
+    });
+  });
 
 // Update profile photo
 document.getElementById("show-file-input").addEventListener("click", () => {
@@ -34,32 +46,31 @@ document.getElementById("show-file-input").addEventListener("click", () => {
 });
 
 document.getElementById("update-photo-form").addEventListener("submit", (e) => {
-    e.preventDefault();
-  
-    const file = document.getElementById("profile-photo-upload").files[0];
-    if (file) {
-      // Validasi jenis file
-      const validTypes = ['image/jpeg', 'image/png', 'image/gif'];
-      if (!validTypes.includes(file.type)) {
-        alert("Hanya file gambar yang diperbolehkan!");
-        return;
-      }
-      
-      const user = auth.currentUser;
-      const storageRef = ref(storage, 'profile_photos/' + user.uid);
-      uploadBytes(storageRef, file).then((snapshot) => {
-        getDownloadURL(snapshot.ref).then(async (downloadURL) => {
-          // Update photoURL in Firestore
-          const userDocRef = doc(db, "users", user.uid);
-          await setDoc(userDocRef, { photoURL: downloadURL }, { merge: true });
-  
-          alert("Foto profil diperbarui!");
-          document.getElementById('profile-photo').src = downloadURL;
-        });
-      });
+  e.preventDefault();
+
+  const file = document.getElementById("profile-photo-upload").files[0];
+  if (file) {
+    // Validasi jenis file
+    const validTypes = ['image/jpeg', 'image/png', 'image/gif'];
+    if (!validTypes.includes(file.type)) {
+      alert("Hanya file gambar yang diperbolehkan!");
+      return;
     }
-  });
-  
+    
+    const user = auth.currentUser;
+    const storageRef = ref(storage, 'profile_photos/' + user.uid);
+    uploadBytes(storageRef, file).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then(async (downloadURL) => {
+        // Update photoURL in Firestore
+        const userDocRef = doc(db, "users", user.uid);
+        await setDoc(userDocRef, { photoURL: downloadURL }, { merge: true });
+
+        alert("Foto profil diperbarui!");
+        document.getElementById('profile-photo').src = downloadURL;
+      });
+    });
+  }
+});
 
 // Update username or email
 document.getElementById("update-profile-form")?.addEventListener("submit", async (e) => {
@@ -102,14 +113,54 @@ document.getElementById("update-password-form").addEventListener("submit", (e) =
     console.error(error);
     alert("Gagal memperbarui kata sandi. Silakan coba lagi.");
   });
-  
 });
 
-// Logout functionality
-document.getElementById("logout-button").addEventListener("click", () => {
-  auth.signOut().then(() => {
-    window.location.replace("login.html");
-  }).catch((error) => {
-    console.error("Error signing out: ", error);
-  });
+// Mengambil elemen profile-photo setelah dokumen dimuat
+document.addEventListener('DOMContentLoaded', () => {
+  const profilePhoto = document.getElementById('profile-photo');
+  const showFileInputButton = document.getElementById('show-file-input');
+  const fileUploadContainer = document.getElementById('file-upload-container');
+  const profilePhotoUploadInput = document.getElementById('profile-photo-upload');
+
+  // Memastikan elemen ada
+  if (profilePhoto && showFileInputButton) {
+    // Menampilkan input file ketika tombol 'Ganti Foto' diklik
+    showFileInputButton.addEventListener('click', () => {
+      fileUploadContainer.style.display = 'block';
+    });
+
+    // Mengupload gambar baru ketika tombol upload diklik
+    document.getElementById('upload-photo').addEventListener('click', () => {
+      if (profilePhotoUploadInput.files.length > 0) {
+        const file = profilePhotoUploadInput.files[0];
+        const user = auth.currentUser;
+
+        if (user) {
+          const storageRef = ref(storage, 'profile_photos/' + user.uid);
+          
+          // Upload gambar ke Firebase Storage
+          uploadBytes(storageRef, file).then((snapshot) => {
+            // Ambil URL gambar setelah upload berhasil
+            getDownloadURL(snapshot.ref).then((downloadURL) => {
+              // Update foto profil di Firestore
+              const userDocRef = doc(db, "users", user.uid);
+              setDoc(userDocRef, { photoURL: downloadURL }, { merge: true })
+                .then(() => {
+                  // Ganti foto profil di halaman
+                  profilePhoto.src = downloadURL;
+                  alert('Foto profil diperbarui!');
+                })
+                .catch((error) => {
+                  console.error('Error updating Firestore:', error);
+                  alert('Gagal memperbarui foto profil.');
+                });
+            });
+          }).catch((error) => {
+            console.error('Error uploading file:', error);
+            alert('Gagal mengupload foto.');
+          });
+        }
+      }
+    });
+  }
 });

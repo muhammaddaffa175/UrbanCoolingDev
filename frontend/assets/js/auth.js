@@ -6,6 +6,7 @@ import {
     onAuthStateChanged, 
     updateProfile 
 } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+
 import { saveUserData,} from './firestore.js'; // Import firestore.js functions
 import app from './app.js';
 
@@ -69,21 +70,20 @@ document.getElementById("button_login")?.addEventListener("click", async (e) => 
     }
 });
 
-// Listen for authentication state changes
 onAuthStateChanged(auth, (user) => {
     const loginButton = document.getElementById("log-in");
     const userDisplay = document.getElementById("usernameDisplay");
 
     if (user) {
-        if (loginButton) loginButton.style.display = "none";  // Pastikan elemen ada sebelum diubah
-        if (userDisplay) {
-            userDisplay.style.display = "block";
-            userDisplay.textContent = user.displayName || "Profile";
-            userDisplay.href = "../profile/profile.html";
-        }
+        console.log("User logged in:", user.uid);
+        loginButton.style.display = "none";  // Menyembunyikan tombol login
+        userDisplay.style.display = "block"; // Menampilkan username
+        userDisplay.textContent = user.displayName || "Profile"; // Menampilkan nama pengguna atau "Profile"
+        userDisplay.href = "/frontend/profile/profile.html"; // Menautkan ke halaman profil
     } else {
-        if (loginButton) loginButton.style.display = "block";  // Pastikan elemen ada sebelum diubah
-        if (userDisplay) userDisplay.style.display = "none";
+        console.log("User not logged in.");
+        loginButton.style.display = "block";  // Menampilkan tombol login
+        userDisplay.style.display = "none";  // Menyembunyikan username
     }
 });
 

@@ -1,60 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User Profile</title>
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="css/profile.css">
-</head>
-<body>
-  <nav class="navbar">
-    <a href="index.html" class="navbar-logo">Phy<span>Asics</span></a>
-    <div class="navbar-nav">
-      <a href="index.html">Home</a>
-      <button id="logout-button" class="logout-btn">Logout</button>
-    </div>
-  </nav>
-  <main class="profile-container">
-    <h1>User Profile</h1>
-
-    <img src="default-profile.png" alt="Profile Photo" class="profile-photo" id="profile-photo" />
-    <form id="update-photo-form">
-      <button type="button" id="show-file-input">Update Photo</button>
-      <div id="file-upload-container" style="display: none;">
-        <input type="file" id="profile-photo-upload" accept="image/*" />
-        <button type="submit" id="submit-photo">Submit</button>
-      </div>
-    </form>
-
-    <div class="profile-details">
-      <p><strong>Username:</strong> <span id="profile-username">Loading...</span></p>
-      <p><strong>Email:</strong> <span id="profile-email">Loading...</span></p>
-    </div>
-
-    <form id="update-password-form">
-      <label for="new-password">New Password:</label>
-      <input type="password" id="new-password" required />
-      <button type="submit">Update Password</button>
-    </form>
-    
-  </main>
-  <script type="module" src="js/profile.js"></script>
-</body>
-</html>
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -71,14 +16,14 @@
     <script src="https://unpkg.com/feather-icons"></script>
 
     <!-- My Styles -->
-    <link rel="stylesheet" href="./assets/css/styles.css" />
+    <link rel="stylesheet" href="profile.css" />
   </head>
   <body>
     <!-- Header & Navbar Start -->
     <header>
       <nav class="navbar">
         <!-- Logo dan Nama Platform -->
-        <a href="index.html" class="navbar-logo">Urban <span>Cooling</span></a>
+        <a href="../index.html" class="navbar-logo">Urban <span>Cooling</span></a>
 
         <!-- Navigasi Utama -->
         <div class="navbar-nav">
@@ -92,7 +37,7 @@
         <!-- Fitur Tambahan di Navbar -->
         <div class="navbar-extra">
           <!-- Logout -->
-          <a href="logout.html" id="logout" class="logout-button">Logout</a>
+          <a href="../index.html" id="logout-button" class="logout-btn">Logout</a>
         </div>
       </nav>
     </header>
@@ -103,38 +48,55 @@
       <div class="container">
         <h2>Profil Pengguna</h2>
         <div class="profile-card">
-          <div class="profile-info">
-            <h3>Informasi Pengguna</h3>
-            <p><strong>Nama:</strong> John Doe</p>
-            <p><strong>Email:</strong> johndoe@example.com</p>
-            <p><strong>Username:</strong> johndoe123</p>
-            <p><strong>Member Since:</strong> January 2023</p>
+          <!-- User Info Section -->
+          <div class="profile-details">
+            <strong>Foto Profil:</strong>
+            <img id="profile-photo" src="../assets/images/default-profile.png" alt="Profile Photo" />
+            <button id="show-file-input">Ganti Foto</button>
+            <div id="file-upload-container" style="display:none;">
+              <input type="file" id="profile-photo-upload" />
+              <button type="button" id="upload-photo">Upload</button>
+            </div>
+
+            <p><strong>Username:</strong> <span id="profile-username">Loading...</span></p>
+            <p><strong>Email:</strong> <span id="profile-email">Loading...</span></p>
           </div>
 
-          <!-- Button untuk Edit Profil -->
-          <div class="profile-edit">
-            <a href="edit-profile.html" class="cta">Edit Profil</a>
+          <!-- Update Profile Section -->
+          <div class="update-profile">
+            <h3>Perbarui Profil</h3>
+            <form action="" method="POST" id="update-profile-form">
+              <div class="input-group">
+                <label for="new-username">Username Baru:</label>
+                <input type="text" id="new-username" name="new-username" required />
+              </div>
+              <div class="input-group">
+                <label for="new-email">Email Baru:</label>
+                <input type="email" id="new-email" name="new-email" required />
+              </div>
+              <button type="submit" class="button">Perbarui Profil</button>
+            </form>
           </div>
-        </div>
 
-        <!-- Update Password Section -->
-        <div class="update-password">
-          <h3>Ganti Kata Sandi</h3>
-          <form action="" method="POST">
-            <div class="input-group">
-              <label for="current-password">Kata Sandi Saat Ini:</label>
-              <input type="password" id="current-password" name="current-password" required />
-            </div>
-            <div class="input-group">
-              <label for="new-password">Kata Sandi Baru:</label>
-              <input type="password" id="new-password" name="new-password" required />
-            </div>
-            <div class="input-group">
-              <label for="confirm-password">Konfirmasi Kata Sandi Baru:</label>
-              <input type="password" id="confirm-password" name="confirm-password" required />
-            </div>
-            <button type="submit" class="button">Perbarui Kata Sandi</button>
-          </form>
+          <!-- Update Password Section -->
+          <div class="update-password">
+            <h3>Ganti Kata Sandi</h3>
+            <form action="" method="POST" id="update-password-form">
+              <div class="input-group">
+                <label for="current-password">Kata Sandi Saat Ini:</label>
+                <input type="password" id="current-password" name="current-password" required />
+              </div>
+              <div class="input-group">
+                <label for="new-password">Kata Sandi Baru:</label>
+                <input type="password" id="new-password" name="new-password" placeholder="Masukkan kata sandi baru" required />
+              </div>
+              <div class="input-group">
+                <label for="confirm-password">Konfirmasi Kata Sandi Baru:</label>
+                <input type="password" id="confirm-password" name="confirm-password" placeholder="Konfirmasi kata sandi baru" required />
+              </div>
+              <button type="submit" class="button">Perbarui Kata Sandi</button>
+            </form>
+          </div>
         </div>
       </div>
     </section>
@@ -152,6 +114,6 @@
     </script>
 
     <!-- My Javascript -->
-    <script src="./assets/js/scripts.js"></script>
+    <script type="module" src="profile.js"></script>
   </body>
 </html>

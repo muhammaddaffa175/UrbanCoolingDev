@@ -3,7 +3,7 @@ const navbarNav = document.querySelector(".navbar-nav");
 const hamburger = document.querySelector("#menu");
 
 // Ketika menu di klik, toggle navbar
-hamburger.onclick = () => {
+document.querySelector("#menu").onclick = () => {
   navbarNav.classList.toggle("active");
 };
 
