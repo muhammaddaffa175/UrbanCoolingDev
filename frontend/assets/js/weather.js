@@ -42,19 +42,19 @@ function getWeatherDetails(name, lat, lon, country, state) {
                 </div>
                 <div class="item">
                     <p>NO</p>
-                    <h2>____</h2>
+                    <h2>${no}</h2>
                 </div>
                 <div class="item">
                     <p>NO2</p>
-                    <h2>____</h2>
+                    <h2>${no2}</h2>
                 </div>
                 <div class="item">
                     <p>NH3</p>
-                    <h2>____</h2>
+                    <h2>${nh3}</h2>
                 </div>
                 <div class="item">
                     <p>O3</p>
-                    <h2>____</h2>
+                    <h2>${o3}</h2>
                 </div>
             </div>`
     }).catch(() => {
