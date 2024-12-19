@@ -6,6 +6,11 @@ const hamburger = document.querySelector("#menu");
 document.querySelector("#menu").onclick = () => {
   navbarNav.classList.toggle("active");
 };
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 758) {
+    navbarNav.classList.remove('active'); // Hilangkan overlay menu
+  }
+});
 
 // Klik di luar navbar untuk menghilangkan navbar
 document.addEventListener("click", function (e) {

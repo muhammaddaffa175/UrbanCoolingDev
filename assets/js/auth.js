@@ -48,7 +48,7 @@ document.getElementById("button_register")?.addEventListener("click", async (e) 
     try {
         await registerUser(email, password, username);
         alert("Registration successful!");
-        window.location.href = "/frontend/index.html"; // Redirect to the main page after registration
+        window.location.href = "../index.html"; // Redirect to the main page after registration
     } catch (error) {
         console.error("Error during registration:", error.message);
         alert("Registration failed: " + error.message);
@@ -63,7 +63,7 @@ document.getElementById("button_login")?.addEventListener("click", async (e) => 
     try {
         await loginUser(email, password);
         alert("Login successful!");
-        window.location.href = "/frontend/index.html"; // Redirect to the main page after login
+        window.location.href = "../index.html"; // Redirect to the main page after login
     } catch (error) {
         console.error("Error during login:", error.message);
         alert("Login failed: " + error.message);
@@ -79,7 +79,7 @@ onAuthStateChanged(auth, (user) => {
         loginButton.style.display = "none";  // Menyembunyikan tombol login
         userDisplay.style.display = "block"; // Menampilkan username
         userDisplay.textContent = user.displayName || "Profile"; // Menampilkan nama pengguna atau "Profile"
-        userDisplay.href = "/frontend/profile/profile.html"; // Menautkan ke halaman profil
+        userDisplay.href = "profile/profile.html"; // Menautkan ke halaman profil
     } else {
         console.log("User not logged in.");
         loginButton.style.display = "block";  // Menampilkan tombol login
@@ -92,7 +92,7 @@ document.getElementById("logout-button")?.addEventListener("click", async () => 
     try {
         await logoutUser();
         alert("Logged out successfully!");
-        window.location.href = "/frontend/index.html"; // Redirect to main page after logout
+        window.location.href = "../index.html"; // Redirect to main page after logout
     } catch (error) {
         console.error("Error during logout:", error.message);
         alert("Logout failed: " + error.message);

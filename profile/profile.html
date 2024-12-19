@@ -46,21 +46,28 @@
     <!-- Profile Section Start -->
     <section id="profile" class="profile">
       <div class="container">
-        <h2>Profil Pengguna</h2>
         <div class="profile-card">
           <!-- User Info Section -->
           <div class="profile-details">
-            <strong>Foto Profil:</strong>
+            <h2>Profil Pengguna</h2>
+            <!-- Foto Profil -->
             <img id="profile-photo" src="../assets/images/default-profile.png" alt="Profile Photo" />
+          
+            <!-- Tombol Ganti Foto -->
             <button id="show-file-input">Ganti Foto</button>
+          
+            <!-- Input Upload Foto (Hidden secara default) -->
             <div id="file-upload-container" style="display:none;">
               <input type="file" id="profile-photo-upload" />
               <button type="button" id="upload-photo">Upload</button>
             </div>
-
+          
+            <!-- Informasi Lain -->
             <p><strong>Username:</strong> <span id="profile-username">Loading...</span></p>
             <p><strong>Email:</strong> <span id="profile-email">Loading...</span></p>
           </div>
+
+          <hr class="divider" />
 
           <!-- Update Profile Section -->
           <div class="update-profile">
@@ -77,6 +84,8 @@
               <button type="submit" class="button">Perbarui Profil</button>
             </form>
           </div>
+
+          <hr class="divider" />
 
           <!-- Update Password Section -->
           <div class="update-password">
