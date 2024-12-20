@@ -19,7 +19,7 @@ onAuthStateChanged(auth, async (user) => {
       const userData = docSnapshot.data();
       document.getElementById('profile-username').textContent = userData.username || "Loading...";
       document.getElementById('profile-email').textContent = userData.email || "Loading...";
-      document.getElementById('profile-photo').src = userData.photoURL || "default-profile.png";
+      // document.getElementById('profile-photo').src = userData.photoURL || "../default-profile.png";
     } else {
       console.log("User data not found in Firestore.");
     }
